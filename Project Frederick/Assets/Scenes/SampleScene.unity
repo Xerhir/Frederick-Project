@@ -488,8 +488,6 @@ GameObject:
   - component: {fileID: 700941025}
   - component: {fileID: 700941026}
   - component: {fileID: 700941027}
-  - component: {fileID: 700941028}
-  - component: {fileID: 700941029}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -650,38 +648,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
---- !u!114 &700941028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 700941022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bf994f908963fa43a2ac70813ebdf85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  fallMultiplier: 4
+  lowJumpMultiplier: 8
   jumpForce: 12
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
   groundCheck: {fileID: 1046779617}
   groundCheckRadius: 0.2
---- !u!114 &700941029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 700941022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97493d82d673e77438a6fff6efd1b16d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fallMultiplier: 4
-  lowJumpMultiplier: 8
 --- !u!1 &1046779616
 GameObject:
   m_ObjectHideFlags: 0
