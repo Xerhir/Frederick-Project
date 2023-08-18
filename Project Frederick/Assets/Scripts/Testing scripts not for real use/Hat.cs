@@ -13,6 +13,7 @@ public class Hat : MonoBehaviour
     public float startingTime = 2f;
     private GameObject Fed;
     public bool hasShot;
+    public GameObject player;
     
     void Start()
     {
@@ -32,7 +33,7 @@ public class Hat : MonoBehaviour
             currentTime -= 1 * Time.deltaTime;
             if (currentTime<=0)
             {
-                Destroy(Fed);
+               Fed.transform.position = Vector3.MoveTowards(Fed.transform.position,player.transform.position,100f);
                 hasShot = false;
                 currentTime = startingTime;
             }
