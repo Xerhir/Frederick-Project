@@ -6,9 +6,11 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     public float speed = 10f;
+    
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
     public float jumpForce = 5f;
+
     public LayerMask groundLayer;
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
@@ -21,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
     
-    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,8 +31,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        //better jump
+         //better jump
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
@@ -57,11 +57,11 @@ public class PlayerMovement : MonoBehaviour
         
         Walk(dir);
     }
-
     private void Walk(Vector2 dir)
     {
         rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
     }
+
 
 }
 
