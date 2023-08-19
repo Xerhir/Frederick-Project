@@ -21,7 +21,7 @@ public class Hat : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)&& hasShot==false)
+        if (Input.GetMouseButton(0)&& hasShot==false)
         {
             Debug.Log(currentTime);
             ShootHat();
@@ -32,6 +32,8 @@ public class Hat : MonoBehaviour
             currentTime -= 1 * Time.deltaTime;
             if (currentTime<=0)
             {
+                HatSpeed = 0f;
+                Fed.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
                Fed.transform.position = Vector3.MoveTowards(Fed.transform.position,player.transform.position,hatBackSpeed);
                 hasShot = false;
                 currentTime = startingTime;
