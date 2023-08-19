@@ -8,13 +8,12 @@ public class Hat : MonoBehaviour
 {
 
     public float HatSpeed;
-    public GameObject Fedora;
     public float currentTime;
     public float startingTime = 2f;
-    private GameObject Fed;
+    public GameObject Fed;
     public bool hasShot;
     public GameObject player;
-    
+    public float hatBackSpeed;
     void Start()
     {
         currentTime = startingTime;
@@ -28,12 +27,12 @@ public class Hat : MonoBehaviour
             ShootHat();
         }
 
-        while (GameObject.Find("Fedora(Clone)"))
+        while (GameObject.Find("Fedora"))
         {
             currentTime -= 1 * Time.deltaTime;
             if (currentTime<=0)
             {
-               Fed.transform.position = Vector3.MoveTowards(Fed.transform.position,player.transform.position,100f);
+               Fed.transform.position = Vector3.MoveTowards(Fed.transform.position,player.transform.position,hatBackSpeed);
                 hasShot = false;
                 currentTime = startingTime;
             }
@@ -49,7 +48,7 @@ public class Hat : MonoBehaviour
         if (transform.localScale.x > 0)
         {
             hasShot = true;
-            Fed =  Instantiate(Fedora,transform.position,quaternion.identity);
+            Fed.SetActive(true);
             Fed.GetComponent<Rigidbody2D>().AddTorque(200f);
             Fed.GetComponent<Rigidbody2D>().velocity = new Vector2(HatSpeed, 0f);
         }
@@ -57,7 +56,7 @@ public class Hat : MonoBehaviour
         if (transform.localScale.x < 0)
         {
             hasShot = true;
-            Fed =  Instantiate(Fedora,transform.position,quaternion.identity);
+            Fed.SetActive(true);
             Fed.GetComponent<Rigidbody2D>().AddTorque(200f);
             Fed.GetComponent<Rigidbody2D>().velocity = new Vector2(-HatSpeed, 0f);
         }
