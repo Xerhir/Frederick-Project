@@ -16,7 +16,12 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckRadius = 0.2f;
     private bool isGrounded;
 
-    // Start is called before the first frame update
+    public float dashForce = 10f;
+    public float dashDuration = 0.2f;
+    private bool isDashing = false;
+
+    public TrailRenderer dashTrail;
+    
     
     void Awake()
     {
@@ -55,11 +60,42 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
         
+        // Dash
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing && (isGrounded || (rb.velocity.x != 0 && !isGrounded)))
+        {
+            StartCoroutine(Dash());
+        }
+
         Walk(dir);
     }
     private void Walk(Vector2 dir)
     {
         rb.velocity = (new Vector2(dir.x * speed, rb.velocity.y));
+    }
+
+
+    private IEnumerator Dash()
+    {
+        isDashing = true;
+        dashTrail.emitting = true;
+
+        float originalGravityScale = rb.gravityScale;
+        rb.gravityScale = 0f; // Disable gravity during dash
+
+        Vector2 dashDirection = new Vector2(transform.localScale.x, 0f); // Dash in the direction the player is facing
+        rb.velocity = dashDirection * dashForce;
+
+        yield return new WaitForSeconds(dashDuration);
+        dashTrail.emitting = false;
+        dashTrail.Clear();
+
+        rb.velocity = Vector2.zero;
+        rb.gravityScale = originalGravityScale; // Restore gravity
+
+        
+
+        yield return new WaitForSeconds(0.2f); // Cooldown between dashes
+        isDashing = false;
     }
 
 
